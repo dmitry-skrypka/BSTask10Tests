@@ -161,19 +161,19 @@ describe("CartParser - unit tests", () => {
     });
 
 
-    // describe("parser", () => {
-    //     //     parser.parse = jest.fn(()=>{
-    //     //         const validationErrors = ['test'];
-    //     //         if (validationErrors.length > 0) {
-    //     //             throw Error('Validation failed!');
-    //     //         }
-    //     //     });
-    //     //
-    //     //     expect(parser.parse).toThrow('Validation failed!');
-    //     //
-    //     //     })
+    describe("parser", () => {
+        it('should throw error if validate() returns array with errors', () => {
+            parser.validate = jest.fn(() => {
+                return ['errors here']
+            });
 
 
+            expect(() => parser.parse('./samples/cart.csv')).toThrow('Validation failed!');
+
+
+        })
+
+    })
 });
 
 describe("CartParser - integration tests", () => {
